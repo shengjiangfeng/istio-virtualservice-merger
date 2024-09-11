@@ -1,5 +1,5 @@
 # istio-virtualservice-merger
-
+### Fork from https://github.com/monimesl/istio-virtualservice-merger.git. It cannot support istio 1.21
 A simple kubernetes operator to merge seperated
 Istio [virtual services](https://istio.io/latest/docs/reference/config/networking/virtual-service/) using the same host.
 
