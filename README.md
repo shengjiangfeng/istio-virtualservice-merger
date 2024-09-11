@@ -12,13 +12,13 @@ __Please read the above [issue](https://github.com/istio/istio/issues/22997) to 
 #### Install the CRD
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/monimesl/istio-virtualservice-merger/master/manifest/crd.yaml
+kubectl apply -f https://raw.githubusercontent.com/shengjiangfeng/istio-virtualservice-merger/main/manifest/crd.yaml
 ```
 
 #### Deploy the operator
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/monimesl/istio-virtualservice-merger/master/manifest/operator.yaml
+kubectl apply -f https://raw.githubusercontent.com/shengjiangfeng/istio-virtualservice-merger/master/manifest/operator.yaml
 ```
 
 ##### Create a target [virtual service](https://istio.io/latest/docs/reference/config/networking/virtual-service/) on which seperated patches are merged into.
