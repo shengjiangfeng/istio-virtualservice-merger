@@ -19,6 +19,7 @@ package controllers
 import (
 	"context"
 	"fmt"
+	"sigs.k8s.io/yaml"
 
 	"github.com/monimesl/istio-virtualservice-merger/api/v1alpha1"
 	"github.com/monimesl/operator-helper/oputil"
@@ -111,6 +112,9 @@ func updateTarget(ctx reconciler.Context, client versionedclient.Interface, patc
 	if err != nil {
 		return err
 	}
+	data, err := yaml.Marshal(target)
+	fmt.Println("orgin target ")
+	fmt.Println(string(data))
 	if remove {
 		patch.RemoveTcpRoutes(target)
 		patch.RemoveTlsRoutes(target)
@@ -120,6 +124,9 @@ func updateTarget(ctx reconciler.Context, client versionedclient.Interface, patc
 		patch.AddTlsRoutes(target)
 		patch.AddHttpRoutes(ctx, target)
 	}
+	data1, err := yaml.Marshal(target)
+	fmt.Println("patched target ")
+	fmt.Println(string(data1))
 	if _, err = client.NetworkingV1alpha3().VirtualServices(targetNamespace).
 		Update(context.TODO(), target, metav1.UpdateOptions{}); err != nil {
 		return err

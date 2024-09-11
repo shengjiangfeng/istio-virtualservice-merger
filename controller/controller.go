@@ -32,7 +32,6 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/handler"
 	"sigs.k8s.io/controller-runtime/pkg/predicate"
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
-	"sigs.k8s.io/controller-runtime/pkg/source"
 )
 
 type VirtualServicePatchReconciler struct {
@@ -61,7 +60,7 @@ func (r *VirtualServicePatchReconciler) Configure(ctx reconciler.Context) error 
 				},
 			},
 		)).
-		Watches(&source.Kind{Type: &istio.VirtualService{}}, handler.EnqueueRequestsFromMapFunc(func(obj client.Object) []reconcile.Request {
+		Watches(&istio.VirtualService{}, handler.EnqueueRequestsFromMapFunc(func(ctx2 context.Context, obj client.Object) []reconcile.Request {
 			vs := obj.(*istio.VirtualService)
 			requests := make([]reconcile.Request, 0)
 
